@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ali Shafiee</title>
+<meta name="description" content="Ali Shafiee — MSc student at ISTA working on decision-making under uncertainty. IOI silver medalist, ICPC World Finalist, Codeforces International Grandmaster.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap">
+<style>
+  /* ---------- Tokens: complete light palette on bare :root ---------- */
+  :root {
+    --bg:        #ffffff;
+    --surface:   #f7f8fa;
+    --ink:       #1c1f24;
+    --ink-2:     #4d545e;
+    --ink-3:     #858d98;
+    --rule:      #e4e7eb;
+    --link:      #1a56b8;
+    --link-hover:#0f3a83;
+    --chip-bg:   #eef1f5;
+    --chip-ink:  #4d545e;
+    --mark:      #b3391b;
+
+    --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+    --measure: 68ch;
+  }
+
+  /* System dark, unless an explicit light choice overrides it */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg:        #101317;
+      --surface:   #191d23;
+      --ink:       #e9ecf0;
+      --ink-2:     #a8b1bc;
+      --ink-3:     #737d89;
+      --rule:      #272d35;
+      --link:      #79aaf5;
+      --link-hover:#a3c5fa;
+      --chip-bg:   #212832;
+      --chip-ink:  #a8b1bc;
+      --mark:      #ff7d5c;
+    }
+  }
+
+  /* Explicit dark choice wins over a light OS */
+  :root[data-theme="dark"] {
+    --bg:        #101317;
+    --surface:   #191d23;
+    --ink:       #e9ecf0;
+    --ink-2:     #a8b1bc;
+    --ink-3:     #737d89;
+    --rule:      #272d35;
+    --link:      #79aaf5;
+    --link-hover:#a3c5fa;
+    --chip-bg:   #212832;
+    --chip-ink:  #a8b1bc;
+    --mark:      #ff7d5c;
+  }
+
+  /* ---------- Base ---------- */
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 16.5px;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 54rem;
+    margin: 0 auto;
+    padding: clamp(2.25rem, 5vw, 4rem) clamp(1.25rem, 4vw, 2.5rem) 4rem;
+  }
+
+  p { margin: 0 0 1em; max-width: var(--measure); }
+  p:last-child { margin-bottom: 0; }
+
+  a {
+    color: var(--link);
+    text-decoration: none;
+  }
+  a:hover { color: var(--link-hover); text-decoration: underline; text-underline-offset: 0.16em; }
+  a:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; border-radius: 2px; }
+
+  /* ---------- Header ---------- */
+  .masthead {
+    display: grid;
+    grid-template-columns: 8.5rem 1fr;
+    gap: 2rem;
+    align-items: start;
+    padding-bottom: 2.25rem;
+  }
+
+  .avatar {
+    width: 8.5rem;
+    height: 8.5rem;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    display: grid;
+    place-items: center;
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    color: var(--ink-3);
+    letter-spacing: 0.02em;
+  }
+
+  h1 {
+    font-size: clamp(1.85rem, 4vw, 2.35rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.018em;
+    margin: 0 0 0.5rem;
+    text-wrap: balance;
+  }
+
+  .role { color: var(--ink-2); margin: 0 0 0.35rem; }
+  .role strong { color: var(--ink); font-weight: 600; }
+
+  .where {
+    color: var(--ink-3);
+    font-size: 0.94rem;
+    margin: 0 0 1rem;
+  }
+
+  .links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.15rem;
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .seeking {
+    margin-top: 1.1rem;
+    padding: 0.7rem 0.95rem;
+    background: var(--surface);
+    border-left: 2px solid var(--mark);
+    font-size: 0.93rem;
+    color: var(--ink);
+    max-width: 42rem;
+  }
+  .seeking strong { font-weight: 600; }
+
+  /* ---------- Sections ---------- */
+  section { padding-top: 2.5rem; }
+
+  h2 {
+    font-size: 1.28rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    margin: 0 0 1.1rem;
+    padding-bottom: 0.55rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ---------- News ---------- */
+  .news {
+    margin: 0;
+    max-height: 20rem;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+  .news-item {
+    display: grid;
+    grid-template-columns: 6.2rem 1fr;
+    gap: 1.1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.95rem;
+  }
+  .news-item:last-child { border-bottom: none; }
+  .news-date {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    padding-top: 0.28em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .news-body { color: var(--ink-2); }
+  .news-body strong { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Timeline (Affiliation & Research) ---------- */
+  .timeline { display: flex; flex-direction: column; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 1.5rem;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .tl-item:last-child { border-bottom: none; }
+  .tl-when {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    padding-top: 0.35em;
+    font-variant-numeric: tabular-nums;
+  }
+  .tl-role { font-weight: 600; margin: 0 0 0.1rem; max-width: var(--measure); }
+  .tl-org { color: var(--ink-2); font-size: 0.94rem; margin: 0 0 0.45rem; max-width: var(--measure); }
+  .tl-item ul { margin: 0.35rem 0 0; padding-left: 1.1rem; max-width: var(--measure); }
+  .tl-item li { font-size: 0.94rem; color: var(--ink-2); margin-bottom: 0.35rem; }
+  .tl-item li:last-child { margin-bottom: 0; }
+  .tl-item li strong { color: var(--ink); font-weight: 600; }
+  .tl-roles {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    margin: 0 0 0.5rem;
+    max-width: var(--measure);
+    line-height: 1.6;
+  }
+
+  /* ---------- Publications ---------- */
+  .pubs { display: flex; flex-direction: column; }
+  .pub {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: start;
+  }
+  .pub:last-child { border-bottom: none; }
+
+  /* Venue tile stands in for the paper thumbnail */
+  .pub-venue {
+    background: var(--chip-bg);
+    border: 1px solid var(--rule);
+    padding: 0.7rem 0.5rem;
+    text-align: center;
+    font-family: var(--font-mono);
+  }
+  .pub-venue .v-name { display: block; font-size: 0.86rem; font-weight: 500; color: var(--ink); }
+  .pub-venue .v-year { display: block; font-size: 0.86rem; color: var(--chip-ink); font-variant-numeric: tabular-nums; }
+  .pub-venue .v-status {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.63rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .pub-title { font-weight: 600; margin: 0 0 0.25rem; line-height: 1.45; max-width: var(--measure); }
+  .pub-authors { font-size: 0.92rem; color: var(--ink-3); margin: 0 0 0.4rem; max-width: var(--measure); }
+  .pub-authors .me { color: var(--ink); font-weight: 600; }
+  .pub-links {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    display: flex;
+    gap: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .note { font-size: 0.9rem; color: var(--ink-3); margin: 0 0 1.1rem; max-width: var(--measure); }
+
+  /* ---------- Awards / services list ---------- */
+  .plain { display: flex; flex-direction: column; }
+  .plain-item {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 1.5rem;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .plain-item:last-child { border-bottom: none; }
+  .plain-when {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    padding-top: 0.25em;
+    font-variant-numeric: tabular-nums;
+  }
+  .plain-what { max-width: var(--measure); }
+  .plain-what .h { font-weight: 600; }
+  .plain-what .d { color: var(--ink-2); font-size: 0.93rem; }
+
+  /* ---------- Toolbox ---------- */
+  .kit { display: flex; flex-direction: column; }
+  .kit-row {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 1.5rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .kit-row:last-child { border-bottom: none; }
+  .kit-label {
+    font-family: var(--font-mono);
+    font-size: 0.73rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding-top: 0.4em;
+  }
+  .kit-items { font-size: 0.94rem; color: var(--ink-2); max-width: var(--measure); }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 3rem;
+    padding-top: 1.35rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--ink-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1.2rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+  }
+
+  /* ---------- Narrow ---------- */
+  @media (max-width: 40rem) {
+    .masthead { grid-template-columns: 1fr; gap: 1.25rem; }
+    .avatar { width: 6.5rem; height: 6.5rem; font-size: 1.5rem; }
+    .news-item, .tl-item, .pub, .plain-item, .kit-row {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+    .news-date, .tl-when, .plain-when, .kit-label { padding-top: 0; }
+    .pub-venue { max-width: 7rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="masthead">
+    <img class="avatar" src="profile.jpg" alt="Ali Shafiee">
+
+    <div>
+      <h1>Ali Shafiee</h1>
+      <p class="role"><strong>MSc student in Computer Science</strong>, Institute of Science and Technology Austria (ISTA)</p>
+      <p class="where">Advised by <a href="https://pub.ista.ac.at/~kchatterjee/">Krishnendu Chatterjee</a> · Klosterneuburg, Austria · <a href="mailto:ali9shafiee@gmail.com">ali9shafiee@gmail.com</a></p>
+
+      <ul class="links">
+        <li><a href="https://scholar.google.com/citations?user=dCtCmbUAAAAJ">Google Scholar</a></li>
+        <li><a href="resume-quant.pdf">CV</a></li>
+        <li><a href="https://codeforces.com/profile/ToTLeS">Codeforces</a></li>
+        <li><a href="https://www.linkedin.com/in/ali9shafiee/">LinkedIn</a></li>
+        <li><a href="https://stats.ioinformatics.org/people/6249">IOI profile</a></li>
+      </ul>
+
+      <p class="seeking">I am looking for a <strong>research internship in 2027</strong>.</p>
+    </div>
+  </header>
+
+  <section id="bio">
+    <h2>Bio</h2>
+    <p>I am a Master's student at ISTA, advised by <a href="https://pub.ista.ac.at/~kchatterjee/">Krishnendu Chatterjee</a>. I work on the complexity of sequential decision-making under uncertainty: Markov decision processes in which the agent cannot observe the full state, and <em>robust</em> MDPs in which the transition probabilities themselves are known only to lie within a set that an adversary may choose from. The questions I care about take the form <em>is this problem decidable, and if so how hard is it</em> — and the answers turn into algorithms that I implement and measure. More recently I have also been working on mechanism design for blockchain consensus.</p>
+    <p>Before ISTA I spent most of a decade in competitive programming, with a silver medal at the <a href="https://ioinformatics.org/">IOI</a>, a 33rd-place finish at the <a href="https://icpc.global/">ICPC World Finals</a>, and an International Grandmaster rating on <a href="https://codeforces.com/profile/ToTLeS">Codeforces</a>. Alongside that I spent six years at <a href="https://quera.org/">Quera</a>, Iran's largest technical-education platform, rising from running contests to managing a business line. Contests taught me to find an algorithm quickly; research taught me to prove there is no better one.</p>
+    <p>I am currently looking for internships where that combination is useful. Outside work I set olympiad problems, coach students for the IOI, and still compete when I can.</p>
+  </section>
+
+  <section id="news">
+    <h2>News</h2>
+    <div class="news">
+      <div class="news-item">
+        <div class="news-date">Jul 2026</div>
+        <div class="news-body"><strong>Randomise Alone, Reach as a Team</strong> presented at <a href="http://i-cav.org/">CAV 2026</a>, joint work with L. Brice, T. A. Henzinger, A. Montaseri and K. S. Thejaswini.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">May 2026</div>
+        <div class="news-body">New preprint on the <a href="https://arxiv.org/abs/2605.07459">complexity of discounted robust MDPs with L<sub>p</sub> uncertainty sets</a>, submitted to NeurIPS 2026.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Mar 2026</div>
+        <div class="news-body">Preprint of <a href="https://arxiv.org/abs/2603.07094">Randomise Alone, Reach as a Team</a> is on arXiv.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Jan 2026</div>
+        <div class="news-body"><strong>Qualitative Analysis of ω-Regular Objectives on Robust MDPs</strong> presented at <a href="https://aaai.org/conference/aaai/aaai-26/">AAAI 2026</a>.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Sep 2025</div>
+        <div class="news-body">Started my MSc in Computer Science at <a href="https://ista.ac.at/">ISTA</a>, advised by Krishnendu Chatterjee.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Aug 2025</div>
+        <div class="news-body">Wrapped up six years at <a href="https://quera.org/">Quera</a>, most recently as a business line manager.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Jul 2025</div>
+        <div class="news-body"><strong>Limit-sure reachability for small-memory policies in POMDPs is NP-complete</strong> presented at <a href="https://www.auai.org/uai2025/">UAI 2025</a>.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Apr 2024</div>
+        <div class="news-body">Joined <a href="https://ista.ac.at/">ISTA</a> as a research intern in Krishnendu Chatterjee's group.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="affiliation">
+    <h2>Affiliation &amp; Research</h2>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-when">Sep 2025 – Sep 2027</div>
+        <div>
+          <p class="tl-role">MSc in Computer Science</p>
+          <p class="tl-org">Institute of Science and Technology Austria (ISTA) · advised by Krishnendu Chatterjee</p>
+          <ul>
+            <li>Complexity and algorithms for partially observable and robust Markov decision processes; mechanism design for multi-resource consensus.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">Apr 2024 – Dec 2024</div>
+        <div>
+          <p class="tl-role">Research Intern and Online Collaborator</p>
+          <p class="tl-org">ISTA, Klosterneuburg, Austria</p>
+          <ul>
+            <li>Proved that <strong>limit-sure reachability for small-memory POMDP policies is NP-complete</strong>, settling the complexity of a case that had been open (UAI 2025).</li>
+            <li>Established complexity bounds and algorithms for robust MDPs under ω-regular and discounted objectives, which became three further papers.</li>
+            <li>Implemented and benchmarked the resulting solvers in C++ and Python over randomly generated and structured families of MDP instances.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">Jun 2023 – Aug 2023</div>
+        <div>
+          <p class="tl-role">Research Assistant</p>
+          <p class="tl-org">Sharif University of Technology · advised by <a href="https://sharif.edu/~abam/">Mohammad Ali Abam</a></p>
+          <ul>
+            <li>Round- and memory-efficient minimum cut and maximal matching algorithms in the Massive Parallel Computation and Adaptive MPC models.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">Sep 2018 – Aug 2023</div>
+        <div>
+          <p class="tl-role">BSc in Computer Engineering</p>
+          <p class="tl-org">Sharif University of Technology, Tehran</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <p class="note">Author lists are alphabetical, following the convention in theoretical computer science.</p>
+
+    <div class="pubs">
+      <div class="pub">
+        <div class="pub-venue"><span class="v-name">CAV</span><span class="v-year">2026</span><span class="v-status">Published</span></div>
+        <div>
+          <p class="pub-title">Randomise Alone, Reach as a Team</p>
+          <p class="pub-authors">L. Brice, T. A. Henzinger, A. Montaseri, <span class="me">A. Shafiee</span>, K. S. Thejaswini</p>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2603.07094">arXiv</a>
+            <a href="http://i-cav.org/">Venue</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-venue"><span class="v-name">AAAI</span><span class="v-year">2026</span><span class="v-status">Published</span></div>
+        <div>
+          <p class="pub-title">Qualitative Analysis of ω-Regular Objectives on Robust MDPs</p>
+          <p class="pub-authors">A. Asadi, K. Chatterjee, E. Goharshady, M. Karrabi, <span class="me">A. Shafiee</span></p>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2505.04539">arXiv</a>
+            <a href="https://aaai.org/conference/aaai/aaai-26/">Venue</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-venue"><span class="v-name">UAI</span><span class="v-year">2025</span><span class="v-status">Published</span></div>
+        <div>
+          <p class="pub-title">Limit-Sure Reachability for Small-Memory Policies in POMDPs is NP-Complete</p>
+          <p class="pub-authors">A. Asadi, K. Chatterjee, R. Saona, <span class="me">A. Shafiee</span></p>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2412.00941">arXiv</a>
+            <a href="https://www.auai.org/uai2025/">Venue</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-venue"><span class="v-name">NeurIPS</span><span class="v-year">2026</span><span class="v-status">Under review</span></div>
+        <div>
+          <p class="pub-title">On the Complexity of Discounted Robust MDPs with L<sub>p</sub> Uncertainty Sets</p>
+          <p class="pub-authors">A. Asadi, K. Chatterjee, A. Montaseri, <span class="me">A. Shafiee</span></p>
+          <div class="pub-links">
+            <a href="https://arxiv.org/abs/2605.07459">arXiv</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-venue"><span class="v-name">WINE</span><span class="v-year">2026</span><span class="v-status">Under review</span></div>
+        <div>
+          <p class="pub-title">Mechanism Design for Multi-Resource Nakamoto Consensus</p>
+          <p class="pub-authors">N. Babashah, M. A. Baig, K. Pietrzak, <span class="me">A. Shafiee</span></p>
+          <div class="pub-links">
+            <a href="http://wine-conf.org/">Venue</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-venue"><span class="v-name">AAAI</span><span class="v-year">2027</span><span class="v-status">Under review</span></div>
+        <div>
+          <p class="pub-title">Quantitative Analysis of ω-Regular Robust MDPs</p>
+          <p class="pub-authors">A. Asadi, K. Chatterjee, E. K. Goharshady, M. Karrabi, A. Montaseri, <span class="me">A. Shafiee</span></p>
+          <div class="pub-links">
+            <a href="https://aaai.org/conference/aaai/aaai-27/">Venue</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="industry">
+    <h2>Industry Experience</h2>
+    <p class="note">Six years at <a href="https://quera.org/">Quera</a>, Iran's largest competitive-programming and technical-education platform, from running contests to owning a business line.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-when">Oct 2024 – Aug 2025</div>
+        <div>
+          <p class="tl-role">Business Line Manager</p>
+          <p class="tl-org">Quera, Tehran</p>
+          <ul>
+            <li>Owned a business line end to end, from strategy and roadmap through delivery and commercial results.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">Nov 2022 – Jun 2024</div>
+        <div>
+          <p class="tl-role">Director of Computer Science Education</p>
+          <p class="tl-org">Quera, Tehran</p>
+          <ul>
+            <li>Led the education department and set the strategic roadmap for its products.</li>
+            <li>Supervised six cross-functional technical teams — back-end, front-end, data, blockchain, algorithms and fundamentals — a division of roughly <strong>40 engineers, content creators and specialists</strong>.</li>
+            <li>Streamlined the content delivery pipeline and scaled the platform's infrastructure for large-scale technical training.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">Mar 2020 – Oct 2022</div>
+        <div>
+          <p class="tl-role">Technical Content and Education Manager</p>
+          <p class="tl-org">Quera College, Tehran</p>
+          <ul>
+            <li>Designed and produced <strong>more than 12 bootcamps and online courses</strong> covering C++, Python, SQL, Django, Linux and Git, MATLAB, data analysis, machine learning and deep learning.</li>
+            <li>Managed several curriculum teams, holding the material to a standard of technical accuracy and keeping it aligned with current industry practice.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">Mar 2019 – Mar 2020</div>
+        <div>
+          <p class="tl-role">Manager of Quera Contest</p>
+          <p class="tl-org">Quera, Tehran</p>
+          <ul>
+            <li>Organised <strong>more than 20 large-scale programming contests</strong> in algorithms, back-end, front-end and machine learning.</li>
+            <li>Grew an active competitive-programming community and ran sponsored hackathons that corporate partners used for technical hiring.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-when">Jun 2018 – Sep 2018</div>
+        <div>
+          <p class="tl-role">Software Engineering Intern</p>
+          <p class="tl-org">Rahnema College, Tehran</p>
+          <ul>
+            <li>Contributed to the back-end design and development of a highly interactive social media application.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="competitive">
+    <h2>Competitive Programming</h2>
+    <div class="plain">
+      <div class="plain-item">
+        <div class="plain-when">2019</div>
+        <div class="plain-what">
+          <span class="h"><a href="https://codeforces.com/profile/ToTLeS">Codeforces</a> — top 50 worldwide.</span>
+          <span class="d">International Grandmaster, peak rating 2800. Handle <code>ToTLeS</code>.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2017</div>
+        <div class="plain-what">
+          <span class="h">Silver Medal, <a href="https://ioinformatics.org/">International Olympiad in Informatics</a>.</span>
+          <span class="d">76th of more than 300 contestants from 80 countries, Tehran.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2021</div>
+        <div class="plain-what">
+          <span class="h">33rd place, <a href="https://icpc.global/">ACM-ICPC World Finals</a>.</span>
+          <span class="d">Among more than 10,000 teams from 110 countries, Moscow.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2018 – 2020</div>
+        <div class="plain-what">
+          <span class="h">Gold Medal, ACM-ICPC West Asia Regional Contest.</span>
+          <span class="d">First place 2019, second 2018, third 2020, against more than 100 teams each year.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2017, 2018</div>
+        <div class="plain-what">
+          <span class="h">Silver Medal, Asia-Pacific Informatics Olympiad.</span>
+          <span class="d">Twice, with more than 20 countries participating.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2016</div>
+        <div class="plain-what">
+          <span class="h">Gold Medal, Iranian National Olympiad in Informatics.</span>
+          <span class="d">One of eight gold medals, after a year of selection among more than 10,000 students.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2017</div>
+        <div class="plain-what">
+          <span class="h">Bronze Medal, Iranian Mathematical Olympiad.</span>
+          <span class="d">Among 80 medallists selected from more than 20,000 students.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Services &amp; Teaching</h2>
+    <div class="plain">
+      <div class="plain-item">
+        <div class="plain-when">2024 – present</div>
+        <div class="plain-what">
+          <span class="h">Scientific Committee, ACM-ICPC West Asia Regional Contest.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2019</div>
+        <div class="plain-what">
+          <span class="h">Host Scientific Committee, <a href="https://ioinformatics.org/">International Olympiad in Informatics</a>, Baku.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2017 – present</div>
+        <div class="plain-what">
+          <span class="h">Problem-setter.</span>
+          <span class="d">Iranian National Olympiad in Informatics, Codecup, and Quera contests.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2019 – 2021</div>
+        <div class="plain-what">
+          <span class="h">Teaching Assistant, Sharif University of Technology.</span>
+          <span class="d">Design of Algorithms, Data Structures and Algorithms, Fundamentals of Programming.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2017 – 2023</div>
+        <div class="plain-what">
+          <span class="h">Olympiad coach.</span>
+          <span class="d">Trained more than 50 students for the Iranian National Olympiad in Informatics and the IOI.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Toolbox</h2>
+    <div class="kit">
+      <div class="kit-row">
+        <div class="kit-label">Languages</div>
+        <div class="kit-items">C++, Python, Rust</div>
+      </div>
+      <div class="kit-row">
+        <div class="kit-label">Numerical</div>
+        <div class="kit-items">NumPy, SciPy, pandas, Matplotlib, scikit-learn, PyTorch, JAX</div>
+      </div>
+      <div class="kit-row">
+        <div class="kit-label">Tools</div>
+        <div class="kit-items">Git, Linux and Bash, SQL, Docker, Jupyter, LaTeX</div>
+      </div>
+      <div class="kit-row">
+        <div class="kit-label">Mathematics</div>
+        <div class="kit-items">Probability, stochastic processes, Markov decision processes, optimization, game theory, computational complexity</div>
+      </div>
+      <div class="kit-row">
+        <div class="kit-label">Spoken</div>
+        <div class="kit-items">Persian (native), English (TOEFL 110/120)</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Ali Shafiee · Klosterneuburg, Austria</span>
+    <a href="mailto:ali9shafiee@gmail.com">ali9shafiee@gmail.com</a>
+    <a href="https://scholar.google.com/citations?user=dCtCmbUAAAAJ">Scholar</a>
+    <a href="https://codeforces.com/profile/ToTLeS">Codeforces</a>
+    <a href="https://www.linkedin.com/in/ali9shafiee/">LinkedIn</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
