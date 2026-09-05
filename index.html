@@ -68,6 +68,9 @@
   /* ---------- Base ---------- */
   * { box-sizing: border-box; }
 
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
   body {
     margin: 0;
     background: var(--bg);
@@ -180,8 +183,23 @@
   }
   .seeking strong { font-weight: 600; }
 
+  /* ---------- Section navigation ---------- */
+  .sectionnav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 1.1rem;
+    padding: 0.7rem 0;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    letter-spacing: 0.02em;
+  }
+  .sectionnav a { color: var(--ink-3); }
+  .sectionnav a:hover { color: var(--link); text-decoration: none; }
+
   /* ---------- Sections ---------- */
-  section { padding-top: 2.5rem; }
+  section { padding-top: 2.5rem; scroll-margin-top: 1.25rem; }
 
   h2 {
     font-size: 1.28rem;
@@ -386,20 +404,30 @@
       </ul>
 
       <p class="cta-row">
-        <a class="cta" href="AliShafieeResume.pdf" download>Download CV (PDF)</a>
+        <a class="cta" href="AliShafieeResume.pdf" target="_blank" rel="noopener">View résumé / CV</a>
       </p>
 
       <p class="seeking">I am looking for a <strong>quantitative research internship for summer 2027</strong>.</p>
     </div>
   </header>
 
+  <nav class="sectionnav" aria-label="Sections">
+    <a href="#bio">Bio</a>
+    <a href="#competitive">Competitive Programming</a>
+    <a href="#affiliation">Affiliation</a>
+    <a href="#publications">Publications</a>
+    <a href="#industry">Industry</a>
+    <a href="#services">Teaching</a>
+    <a href="#skills">Toolbox</a>
+    <a href="#news">News</a>
+  </nav>
+
   <section id="bio">
     <h2>Bio</h2>
     <p>I am an MSc student at ISTA, advised by <a href="https://pub.ista.ac.at/~kchatterjee/">Krishnendu Chatterjee</a>. I work on decision-making under uncertainty.</p>
-    <p>Two settings interest me. In the first, an agent has to act without seeing the full state of the system. In the second, the probabilities are not known exactly. You only know they lie in some set, and you have to plan against the worst case in that set. This is the problem also known as distributionally robust optimization.</p>
-    <p>I ask two things about these problems: can they be solved at all, and how fast. The answers turn into algorithms, and I write and benchmark them in C++ and Python, measuring how they scale on large randomly generated and structured instances and how they compare against existing solvers. More recently I have also worked on mechanism design for blockchain consensus.</p>
+    <p>Two settings interest me. In the first, an agent has to act without seeing the full state of the system. In the second, the probabilities are not known exactly. You only know they lie in some set, and you have to plan against the worst case in that set. This problem is known as distributionally robust optimization.</p>
+    <p>I ask two things about these problems: can they be solved at all, and how fast. The answers turn into algorithms, and I write and benchmark them in C++ and Python, measuring how they scale on large and structured instances and how they compare against existing solvers. More recently I have also worked on mechanism design for blockchain consensus.</p>
     <p>Before ISTA I spent about ten years in competitive programming. Silver medal at the <a href="https://ioinformatics.org/">IOI</a>, 33rd place at the <a href="https://icpc.global/">ICPC World Finals</a>, International Grandmaster on <a href="https://codeforces.com/profile/ToTLeS">Codeforces</a> with a peak rating of 2800. Alongside that I spent six years at <a href="https://quera.org/">Quera</a>, Iran's largest technical education platform. I started by running contests and ended up managing a business line of about 40 people.</p>
-    <p>I am looking for a quantitative research internship for summer 2027. <a href="mailto:ali9shafiee@gmail.com">Email</a> is the best way to reach me.</p>
   </section>
 
   <section id="competitive">
@@ -457,47 +485,6 @@
     </div>
   </section>
 
-  <section id="news">
-    <h2>News</h2>
-    <div class="news">
-      <div class="news-item">
-        <div class="news-date">Aug 2026</div>
-        <div class="news-body">New preprint: <a href="https://arxiv.org/abs/2608.25968">Quantitative Analysis of ω-Regular Robust MDPs</a>, a polynomial-time algorithm for quantitative parity analysis on linearly defined robust Markov chains. Submitted to AAAI 2027.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Jul 2026</div>
-        <div class="news-body"><strong>Randomise Alone, Reach as a Team</strong> presented at <a href="http://i-cav.org/">CAV 2026</a>, joint work with L. Brice, T. A. Henzinger, A. Montaseri and K. S. Thejaswini.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">May 2026</div>
-        <div class="news-body">New preprint on the <a href="https://arxiv.org/abs/2605.07459">complexity of discounted robust MDPs with L<sub>p</sub> uncertainty sets</a>, submitted to NeurIPS 2026.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Mar 2026</div>
-        <div class="news-body">Preprint of <a href="https://arxiv.org/abs/2603.07094">Randomise Alone, Reach as a Team</a> is on arXiv.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Jan 2026</div>
-        <div class="news-body"><strong>Qualitative Analysis of ω-Regular Objectives on Robust MDPs</strong> presented at <a href="https://aaai.org/conference/aaai/aaai-26/">AAAI 2026</a>.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Sep 2025</div>
-        <div class="news-body">Started my MSc in Computer Science at <a href="https://ista.ac.at/">ISTA</a>, advised by Krishnendu Chatterjee.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Aug 2025</div>
-        <div class="news-body">Wrapped up six years at <a href="https://quera.org/">Quera</a>, most recently as a business line manager.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Jul 2025</div>
-        <div class="news-body"><strong>Limit-sure reachability for small-memory policies in POMDPs is NP-complete</strong> presented at <a href="https://www.auai.org/uai2025/">UAI 2025</a>.</div>
-      </div>
-      <div class="news-item">
-        <div class="news-date">Apr 2024</div>
-        <div class="news-body">Joined <a href="https://ista.ac.at/">ISTA</a> as a research intern in Krishnendu Chatterjee's group.</div>
-      </div>
-    </div>
-  </section>
 
   <section id="affiliation">
     <h2>Affiliation &amp; Research</h2>
@@ -751,6 +738,48 @@
       <div class="kit-row">
         <div class="kit-label">Spoken</div>
         <div class="kit-items">Persian (native), English (TOEFL 110/120)</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="news">
+    <h2>News</h2>
+    <div class="news">
+      <div class="news-item">
+        <div class="news-date">Aug 2026</div>
+        <div class="news-body">New preprint: <a href="https://arxiv.org/abs/2608.25968">Quantitative Analysis of ω-Regular Robust MDPs</a>, a polynomial-time algorithm for quantitative parity analysis on linearly defined robust Markov chains. Submitted to AAAI 2027.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Jul 2026</div>
+        <div class="news-body"><strong>Randomise Alone, Reach as a Team</strong> presented at <a href="http://i-cav.org/">CAV 2026</a>, joint work with L. Brice, T. A. Henzinger, A. Montaseri and K. S. Thejaswini.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">May 2026</div>
+        <div class="news-body">New preprint on the <a href="https://arxiv.org/abs/2605.07459">complexity of discounted robust MDPs with L<sub>p</sub> uncertainty sets</a>, submitted to NeurIPS 2026.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Mar 2026</div>
+        <div class="news-body">Preprint of <a href="https://arxiv.org/abs/2603.07094">Randomise Alone, Reach as a Team</a> is on arXiv.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Jan 2026</div>
+        <div class="news-body"><strong>Qualitative Analysis of ω-Regular Objectives on Robust MDPs</strong> presented at <a href="https://aaai.org/conference/aaai/aaai-26/">AAAI 2026</a>.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Sep 2025</div>
+        <div class="news-body">Started my MSc in Computer Science at <a href="https://ista.ac.at/">ISTA</a>, advised by Krishnendu Chatterjee.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Aug 2025</div>
+        <div class="news-body">Wrapped up six years at <a href="https://quera.org/">Quera</a>, most recently as a business line manager.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Jul 2025</div>
+        <div class="news-body"><strong>Limit-sure reachability for small-memory policies in POMDPs is NP-complete</strong> presented at <a href="https://www.auai.org/uai2025/">UAI 2025</a>.</div>
+      </div>
+      <div class="news-item">
+        <div class="news-date">Apr 2024</div>
+        <div class="news-body">Joined <a href="https://ista.ac.at/">ISTA</a> as a research intern in Krishnendu Chatterjee's group.</div>
       </div>
     </div>
   </section>
