@@ -185,6 +185,10 @@
 
   /* ---------- Section navigation ---------- */
   .sectionnav {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--bg);
     display: flex;
     flex-wrap: wrap;
     gap: 0.35rem 1.1rem;
@@ -199,7 +203,7 @@
   .sectionnav a:hover { color: var(--link); text-decoration: none; }
 
   /* ---------- Sections ---------- */
-  section { padding-top: 2.5rem; scroll-margin-top: 1.25rem; }
+  section { padding-top: 2.5rem; scroll-margin-top: 4rem; }
 
   h2 {
     font-size: 1.28rem;
@@ -301,7 +305,8 @@
   }
 
   .pub-title { font-weight: 600; margin: 0 0 0.25rem; line-height: 1.45; max-width: var(--measure); }
-  .pub-authors { font-size: 0.92rem; color: var(--ink-3); margin: 0 0 0.4rem; max-width: var(--measure); }
+  .pub-authors { font-size: 0.92rem; color: var(--ink-3); margin: 0 0 0.3rem; max-width: var(--measure); }
+  .pub-note { font-size: 0.9rem; color: var(--ink-2); margin: 0 0 0.45rem; max-width: var(--measure); line-height: 1.55; }
   .pub-authors .me { color: var(--ink); font-weight: 600; }
   .pub-links {
     font-family: var(--font-mono);
@@ -404,7 +409,7 @@
       </ul>
 
       <p class="cta-row">
-        <a class="cta" href="AliShafieeResume.pdf" target="_blank" rel="noopener">View résumé / CV</a>
+        <a class="cta" href="AliShafieeResume.pdf" target="_blank" rel="noopener">View Resume</a>
       </p>
 
       <p class="seeking">I am looking for a <strong>quantitative research internship for summer 2027</strong>.</p>
@@ -544,6 +549,7 @@
         <div>
           <p class="pub-title">Randomise Alone, Reach as a Team</p>
           <p class="pub-authors">L. Brice, T. A. Henzinger, A. Montaseri, <span class="me">A. Shafiee</span>, K. S. Thejaswini</p>
+          <p class="pub-note">Proves that memoryless strategies suffice for a team whose members randomise independently against an adversary, placing the threshold problem in the existential theory of the reals and showing almost-sure reachability is NP-complete.</p>
           <div class="pub-links">
             <a href="https://arxiv.org/abs/2603.07094">arXiv</a>
             <a href="http://i-cav.org/">Venue</a>
@@ -556,6 +562,7 @@
         <div>
           <p class="pub-title">Qualitative Analysis of ω-Regular Objectives on Robust MDPs</p>
           <p class="pub-authors">A. Asadi, K. Chatterjee, E. Goharshady, M. Karrabi, <span class="me">A. Shafiee</span></p>
+          <p class="pub-note">Gives oracle-based algorithms deciding whether reachability and parity objectives can be met with probability 1 on robust MDPs, with no structural assumptions, scaling to thousands of states.</p>
           <div class="pub-links">
             <a href="https://arxiv.org/abs/2505.04539">arXiv</a>
             <a href="https://aaai.org/conference/aaai/aaai-26/">Venue</a>
@@ -568,6 +575,7 @@
         <div>
           <p class="pub-title">Limit-Sure Reachability for Small-Memory Policies in POMDPs is NP-Complete</p>
           <p class="pub-authors">A. Asadi, K. Chatterjee, R. Saona, <span class="me">A. Shafiee</span></p>
+          <p class="pub-note">Settles the complexity of limit-sure reachability once policy memory is bounded: NP-complete, where the unrestricted problem is undecidable.</p>
           <div class="pub-links">
             <a href="https://arxiv.org/abs/2412.00941">arXiv</a>
             <a href="https://www.auai.org/uai2025/">Venue</a>
@@ -580,6 +588,7 @@
         <div>
           <p class="pub-title">On the Complexity of Discounted Robust MDPs with L<sub>p</sub> Uncertainty Sets</p>
           <p class="pub-authors">A. Asadi, K. Chatterjee, A. Montaseri, <span class="me">A. Shafiee</span></p>
+          <p class="pub-note">Proves policy iteration is strongly polynomial for L<sub>1</sub> and L<sub>∞</sub> uncertainty sets, and establishes hardness for the intermediate norms with 1 &lt; p &lt; ∞.</p>
           <div class="pub-links">
             <a href="https://arxiv.org/abs/2605.07459">arXiv</a>
           </div>
@@ -602,6 +611,7 @@
         <div>
           <p class="pub-title">Quantitative Analysis of ω-Regular Robust MDPs</p>
           <p class="pub-authors">A. Asadi, K. Chatterjee, E. K. Goharshady, M. Karrabi, A. Montaseri, <span class="me">A. Shafiee</span></p>
+          <p class="pub-note">Shows both agent and environment have pure memoryless optimal strategies under linear uncertainty, and gives a polynomial-time algorithm for quantitative parity analysis on robust Markov chains.</p>
           <div class="pub-links">
             <a href="https://arxiv.org/abs/2608.25968">arXiv</a>
             <a href="https://aaai.org/conference/aaai/aaai-27/">Venue</a>
