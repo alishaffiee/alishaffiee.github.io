@@ -1,2 +1,29 @@
+# Social preview crawlers are allowed, so that a shared link renders a
+# card with the Open Graph title, description and photo.
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: Discordbot
+Allow: /
+
+# Everything else, search engines included, stays out.
 User-agent: *
 Disallow: /
