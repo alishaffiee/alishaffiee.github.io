@@ -22,6 +22,7 @@
     --chip-bg:   #eef1f5;
     --chip-ink:  #4d545e;
     --mark:      #b3391b;
+    --cta-ink:   #ffffff;
 
     --font-body: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -43,6 +44,7 @@
       --chip-bg:   #212832;
       --chip-ink:  #a8b1bc;
       --mark:      #ff7d5c;
+      --cta-ink:   #101317;
     }
   }
 
@@ -59,6 +61,7 @@
     --chip-bg:   #212832;
     --chip-ink:  #a8b1bc;
     --mark:      #ff7d5c;
+    --cta-ink:   #101317;
   }
 
   /* ---------- Base ---------- */
@@ -143,8 +146,30 @@
     list-style: none;
   }
 
+  .cta-row {
+    margin: 1.15rem 0 0;
+    max-width: none;
+  }
+  .cta {
+    display: inline-block;
+    background: var(--link);
+    color: var(--cta-ink);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.6rem 1.15rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: background 140ms ease;
+  }
+  .cta:hover {
+    background: var(--link-hover);
+    color: var(--cta-ink);
+    text-decoration: none;
+  }
+  .cta:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
   .seeking {
-    margin-top: 1.1rem;
+    margin-top: 0.85rem;
     padding: 0.7rem 0.95rem;
     background: var(--surface);
     border-left: 2px solid var(--mark);
@@ -359,15 +384,76 @@
         <li><a href="https://stats.ioinformatics.org/people/6249">IOI profile</a></li>
       </ul>
 
-      <p class="seeking">I am looking for a <strong>research internship in 2027</strong>.</p>
+      <p class="cta-row">
+        <a class="cta" href="resume-quant.pdf" download>Download CV (PDF)</a>
+      </p>
+
+      <p class="seeking">I am looking for a <strong>quantitative research internship for summer 2027</strong>.</p>
     </div>
   </header>
 
   <section id="bio">
     <h2>Bio</h2>
-    <p>I am a PhD student at ISTA, advised by <a href="https://pub.ista.ac.at/~kchatterjee/">Krishnendu Chatterjee</a>. I work on the complexity of sequential decision-making under uncertainty: Markov decision processes in which the agent cannot observe the full state, and <em>robust</em> MDPs in which the transition probabilities themselves are known only to lie within a set that an adversary may choose from. The questions I care about take the form <em>is this problem decidable, and if so how hard is it</em>. The answers turn into algorithms that I implement and measure. More recently, I have also been working on mechanism design for blockchain consensus.</p>
-    <p>Before ISTA I spent most of a decade in competitive programming, with a silver medal at the <a href="https://ioinformatics.org/">IOI</a>, a 33rd-place finish at the <a href="https://icpc.global/">ICPC World Finals</a>, and an International Grandmaster rating on <a href="https://codeforces.com/profile/ToTLeS">Codeforces</a>. Alongside that, I spent six years at <a href="https://quera.org/">Quera</a>, Iran's largest technical-education platform, rising from running contests to managing an entire business line.</p>
-    <p>I am currently looking for internships where that combination of my background is useful.</p>
+    <p>I am a PhD student at ISTA, advised by <a href="https://pub.ista.ac.at/~kchatterjee/">Krishnendu Chatterjee</a>. I work on decision-making under uncertainty.</p>
+    <p>Two settings interest me. In the first, an agent has to act without seeing the full state of the system. In the second, the probabilities are not known exactly. You only know they lie in some set, and you have to plan against the worst case in that set. This is the problem also known as distributionally robust optimization.</p>
+    <p>I ask two things about these problems: can they be solved at all, and how fast. The answers turn into algorithms, and I write and benchmark them in C++ and Python, measuring how they scale on large randomly generated and structured instances and how they compare against existing solvers. More recently I have also worked on mechanism design for blockchain consensus.</p>
+    <p>Before ISTA I spent about ten years in competitive programming. Silver medal at the <a href="https://ioinformatics.org/">IOI</a>, 33rd place at the <a href="https://icpc.global/">ICPC World Finals</a>, International Grandmaster on <a href="https://codeforces.com/profile/ToTLeS">Codeforces</a> with a peak rating of 2800. Alongside that I spent six years at <a href="https://quera.org/">Quera</a>, Iran's largest technical education platform. I started by running contests and ended up managing a business line of about 40 people.</p>
+    <p>I am looking for a quantitative research internship for summer 2027. <a href="mailto:ali9shafiee@gmail.com">Email</a> is the best way to reach me.</p>
+  </section>
+
+  <section id="competitive">
+    <h2>Competitive Programming</h2>
+    <div class="plain">
+      <div class="plain-item">
+        <div class="plain-when">2019</div>
+        <div class="plain-what">
+          <span class="h"><a href="https://codeforces.com/profile/ToTLeS">Codeforces</a> — top 50 worldwide.</span>
+          <span class="d">International Grandmaster, peak rating 2800. Handle <code>ToTLeS</code>.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2017</div>
+        <div class="plain-what">
+          <span class="h">Silver Medal, <a href="https://ioinformatics.org/">International Olympiad in Informatics</a>.</span>
+          <span class="d">76th of more than 300 contestants from 80 countries, Tehran.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2021</div>
+        <div class="plain-what">
+          <span class="h">33rd place, <a href="https://icpc.global/">ACM-ICPC World Finals</a>.</span>
+          <span class="d">Among more than 10,000 teams from 110 countries, Moscow.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2018 – 2020</div>
+        <div class="plain-what">
+          <span class="h">Gold Medal, ACM-ICPC West Asia Regional Contest.</span>
+          <span class="d">First place 2019, second 2018, third 2020, against more than 100 teams each year.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2017, 2018</div>
+        <div class="plain-what">
+          <span class="h">Silver Medal, Asia-Pacific Informatics Olympiad.</span>
+          <span class="d">Twice, with more than 20 countries participating.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2016</div>
+        <div class="plain-what">
+          <span class="h">Gold Medal, Iranian National Olympiad in Informatics.</span>
+          <span class="d">One of eight gold medals, after a year of selection among more than 10,000 students.</span>
+        </div>
+      </div>
+      <div class="plain-item">
+        <div class="plain-when">2017</div>
+        <div class="plain-what">
+          <span class="h">Bronze Medal, Iranian Mathematical Olympiad.</span>
+          <span class="d">Among 80 medallists selected from more than 20,000 students.</span>
+        </div>
+      </div>
+    </div>
   </section>
 
   <section id="news">
@@ -602,60 +688,6 @@
     </div>
   </section>
 
-  <section id="competitive">
-    <h2>Competitive Programming</h2>
-    <div class="plain">
-      <div class="plain-item">
-        <div class="plain-when">2019</div>
-        <div class="plain-what">
-          <span class="h"><a href="https://codeforces.com/profile/ToTLeS">Codeforces</a> — top 50 worldwide.</span>
-          <span class="d">International Grandmaster, peak rating 2800. Handle <code>ToTLeS</code>.</span>
-        </div>
-      </div>
-      <div class="plain-item">
-        <div class="plain-when">2017</div>
-        <div class="plain-what">
-          <span class="h">Silver Medal, <a href="https://ioinformatics.org/">International Olympiad in Informatics</a>.</span>
-          <span class="d">76th of more than 300 contestants from 80 countries, Tehran.</span>
-        </div>
-      </div>
-      <div class="plain-item">
-        <div class="plain-when">2021</div>
-        <div class="plain-what">
-          <span class="h">33rd place, <a href="https://icpc.global/">ACM-ICPC World Finals</a>.</span>
-          <span class="d">Among more than 10,000 teams from 110 countries, Moscow.</span>
-        </div>
-      </div>
-      <div class="plain-item">
-        <div class="plain-when">2018 – 2020</div>
-        <div class="plain-what">
-          <span class="h">Gold Medal, ACM-ICPC West Asia Regional Contest.</span>
-          <span class="d">First place 2019, second 2018, third 2020, against more than 100 teams each year.</span>
-        </div>
-      </div>
-      <div class="plain-item">
-        <div class="plain-when">2017, 2018</div>
-        <div class="plain-what">
-          <span class="h">Silver Medal, Asia-Pacific Informatics Olympiad.</span>
-          <span class="d">Twice, with more than 20 countries participating.</span>
-        </div>
-      </div>
-      <div class="plain-item">
-        <div class="plain-when">2016</div>
-        <div class="plain-what">
-          <span class="h">Gold Medal, Iranian National Olympiad in Informatics.</span>
-          <span class="d">One of eight gold medals, after a year of selection among more than 10,000 students.</span>
-        </div>
-      </div>
-      <div class="plain-item">
-        <div class="plain-when">2017</div>
-        <div class="plain-what">
-          <span class="h">Bronze Medal, Iranian Mathematical Olympiad.</span>
-          <span class="d">Among 80 medallists selected from more than 20,000 students.</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <section id="services">
     <h2>Services &amp; Teaching</h2>
@@ -700,6 +732,10 @@
     <h2>Toolbox</h2>
     <div class="kit">
       <div class="kit-row">
+        <div class="kit-label">Mathematics</div>
+        <div class="kit-items">Probability, stochastic processes, Markov decision processes, optimization, game theory, computational complexity</div>
+      </div>
+      <div class="kit-row">
         <div class="kit-label">Languages</div>
         <div class="kit-items">C++, Python, Rust</div>
       </div>
@@ -710,10 +746,6 @@
       <div class="kit-row">
         <div class="kit-label">Tools</div>
         <div class="kit-items">Git, Linux and Bash, SQL, Docker, Jupyter, LaTeX</div>
-      </div>
-      <div class="kit-row">
-        <div class="kit-label">Mathematics</div>
-        <div class="kit-items">Probability, stochastic processes, Markov decision processes, optimization, game theory, computational complexity</div>
       </div>
       <div class="kit-row">
         <div class="kit-label">Spoken</div>
